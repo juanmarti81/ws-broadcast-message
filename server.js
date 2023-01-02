@@ -11,7 +11,7 @@ server.on('connection', async function connection(ws) {
   console.log("New client connected")
   // broadcast on web socket when receving a Redis PUB/SUB Event
   ws.on('message', (message) => {
-    server.clients.forEach((client) => client.send(JSON.stringify(message)));
+    server.clients.forEach((client) => client.send(message.toString()));
   })
 
   ws.on('close', () => {
