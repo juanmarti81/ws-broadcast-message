@@ -11,12 +11,14 @@ server.on('connection', async function connection(ws) {
   console.log("New client connected")
   // broadcast on web socket when receving a Redis PUB/SUB Event
   ws.on('message', (message) => {
-    server.broadcast(message);
+    server.broadcast(JSON.stringify(message));
   })
 
   ws.on('close', () => {
     console.log('Client disconnected');
   });
+
+  ws.send('You successfully connected to the websocket.');
 
 });
 
